@@ -2,7 +2,7 @@ import React from 'react';
 
 function Result({monthAmount,totalAmount,payType}) {
   return (
-    <div>
+    <div id='resultContainer'>
       {monthAmount && totalAmount ? (
         <>
         <h2>Your results</h2>
@@ -20,6 +20,7 @@ function Result({monthAmount,totalAmount,payType}) {
       ) :
       (
         <>
+        <img src="public\images.jpeg" alt="" />
         <h2>results shown here</h2>
         <p>Complete the form and click "calculate repayments" 
           to see what your monthly repayments would be.

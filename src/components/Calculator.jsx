@@ -14,32 +14,62 @@ function Calculator({ formData, setFormdata, calculateData }) {
   }
 
   return (
-    <div>
-      <h2>Mortgage  Calculator</h2>
-      <p
-        onClick={() => {
-          setFormdata({
-            amount: "",
-            term: "",
-            rate: "",
-            type: "Repayment"
-          })
-        }}
-      >Clear All</p>
+    <div id='calculatorContainer'>
+      <div className='calculatorHead'>
+        <h2>Mortgage  Calculator</h2>
+        <p
+          onClick={() => {
+            setFormdata({
+              amount: "",
+              term: "",
+              rate: "",
+              type: "Repayment"
+            })
+          }}
+        >Clear All</p>
+      </div>
+
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="amount">Mortgage  Amount</label>
-        <input type="number" onChange={handleChange} id="amount" name='amount' value={formData.amount} />
-        <label htmlFor="term">Mortgage  Term</label>
-        <input type="number" onChange={handleChange} id="term" name='term' value={formData.term} />
-        <label htmlFor="rate">Interest Rate</label>
-        <input type="number" onChange={handleChange} id="rate" name='rate' value={formData.rate} />
-        <label htmlFor="type">Mortgage  Type</label>
-        <select onChange={handleChange} id="type" name='type' value={formData.type}>
-          <option value="Repayment">Repayment</option>
-          <option value="Interest Only">Interest Only</option>
-        </select>
-        <button type="submit">Calculate Repayments</button>
+        <label htmlFor="amount" className='formLabel'>Mortgage  Amount</label>
+        <input type="number" onChange={handleChange} id="amount" name='amount' value={formData.amount} placeholder='₹' />
+        <div className="form-row">
+          <label htmlFor="term" className='formLabel'>Mortgage  Term</label>
+          <input type="number" onChange={handleChange} id="term" name='term' value={formData.term} placeholder='years' />
+          <label htmlFor="rate" className='formLabel'>Interest Rate</label>
+          <input type="number" onChange={handleChange} id="rate" name='rate' value={formData.rate} placeholder='%' />
+        </div>
+        <label htmlFor="type" className='formLabel'>Mortgage  Type</label>
+        <div className="toggle-type">
+          <label
+            className={`toggle-option ${formData.type === 'Repayment' ? 'active' : ''}`}
+          >
+            <input
+              type="radio"
+              name="type"
+              value="Repayment"
+              checked={formData.type === 'Repayment'}
+              onChange={handleChange}
+            />
+            Repayment
+          </label>
+          <label
+            className={`toggle-option ${formData.type === 'Interest Only' ? 'active' : ''}`}
+          >
+            <input
+              type="radio"
+              name="type"
+              value="Interest Only"
+              checked={formData.type === 'Interest Only'}
+              onChange={handleChange}
+            />
+            Interest Only
+          </label>
+        </div>
+
+        <button type="submit" className='calculate-btn'>
+           <i className="bi bi-calculator" style={{ marginRight: '30px' }}></i>
+           Calculate Repayments</button>
       </form>
     </div>
   )
