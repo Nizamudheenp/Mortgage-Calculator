@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Calculator({ formData, setFormdata, calculateData }) {
+function Calculator({ formData, setFormdata, calculateData,clearAll,errors }) {
 
 
 
@@ -17,27 +17,26 @@ function Calculator({ formData, setFormdata, calculateData }) {
     <div id='calculatorContainer'>
       <div className='calculatorHead'>
         <h2>Mortgage  Calculator</h2>
-        <p
-          onClick={() => {
-            setFormdata({
-              amount: "",
-              term: "",
-              rate: "",
-              type: "Repayment"
-            })
-          }}
-        >Clear All</p>
+        <p onClick={clearAll}>Clear All</p>
+
       </div>
 
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="amount" className='formLabel'>Mortgage  Amount</label>
-        <input type="number" onChange={handleChange} id="amount" name='amount' value={formData.amount} placeholder='₹' />
+        <input type="number" onChange={handleChange} id="amount" name='amount' value={formData.amount} placeholder='₹'  className={errors.amount ? 'input-error' : ''} />
+        {errors.amount && <p className="error-text">{errors.amount}</p>}
         <div className="form-row">
+            <div className="form-group">
           <label htmlFor="term" className='formLabel'>Mortgage  Term</label>
-          <input type="number" onChange={handleChange} id="term" name='term' value={formData.term} placeholder='years' />
+          <input type="number" onChange={handleChange} id="term" name='term' value={formData.term} placeholder='years' className={errors.term ? 'input-error' : ''} />
+          {errors.term && <p className="error-text">{errors.term}</p>}
+          </div>
+          <div className="form-group">
           <label htmlFor="rate" className='formLabel'>Interest Rate</label>
-          <input type="number" onChange={handleChange} id="rate" name='rate' value={formData.rate} placeholder='%' />
+          <input type="number" onChange={handleChange} id="rate" name='rate' value={formData.rate} placeholder='%' className={errors.rate ? 'input-error' : ''} />
+          {errors.rate && <p className="error-text">{errors.rate}</p>}
+        </div>
         </div>
         <label htmlFor="type" className='formLabel'>Mortgage  Type</label>
         <div className="toggle-type">

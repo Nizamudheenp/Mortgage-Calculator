@@ -3,6 +3,10 @@
 body {
     background-color: rgb(230, 245, 247);
     font-family: 'Plus Jakarta Sans', sans-serif;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
 }
 
 .concert-one-regular {
@@ -13,23 +17,25 @@ body {
 
 
 /* app.jsx */
+
 #mortgageContainer {
     display: flex;
-    align-items: center;
     margin: auto;
     max-width: 900px;
     background: #fff;
+    border-radius: 15px;
+
 }
 
 /* calculator.jsx */
 #calculatorContainer {
     display: flex;
+    position: relative;
     flex-direction: column;
     background: #fff;
     padding: 25px;
     border-radius: 10px 0 0 10px;
-    height: 50%;
-    width: 100%;
+    
 }
 
 
@@ -54,77 +60,226 @@ body {
 .formLabel {
     color: #7c7b7b;
     font-size: 12px;
-}
-.form-row {
-  display: flex;
-  gap: 1rem;
+    display: block;
+    margin: 0.5rem 0;
 }
 
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.form-row input {
+    padding: 0.50rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    margin-top: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+}
 
 #amount {
     width: 100%;
-    padding: 5px;
-    margin: 3px 0;
-    border-radius: 5px;
-    border: 1px solid rgb(160, 160, 153);
+    padding: 0.50rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
 
 }
 
 .toggle-type {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
 }
 
 .toggle-option {
-  position: relative;
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid #ccc;
-  border-radius: 7px;
-  font-weight: 600;
-  cursor: pointer;
-  color: #000;
-  background-color: #fff;
-  transition: all 0.3s ease;
-  user-select: none;
+    position: relative;
+    display: inline-block;
+    padding: 0.50rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #000;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    user-select: none;
 }
 
 .toggle-option.active {
-  background-color: #f8f9de;
-  border-color: #d9e021;
-  color: #0c2d48;
+    background-color: #f2f3e1;
+    border-color: hsl(62, 70%, 52%);
+    color: #0c2d48;
 }
 
 
 .calculate-btn {
-  margin-top: 1.5rem;
-  width: 75%;
-  padding: 1rem;
-  background: #d9e021;
-  color: #000;
-  border: none;
-  font-weight: bold;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+    margin-top: 1.5rem;
+    width: 75%;
+    padding: 1rem;
+    background: hsl(62, 70%, 52%);
+    color: #000;
+    border: none;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.5s ease;
 }
+
+.input-error {
+  border: 1px solid red;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+
 /* result.jsx */
 #resultContainer {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #091232;
+    background: #030c2ce1;
+    
+    padding: 30px;
+    border-radius: 0 10px 10px 40px;
 
-    width: 100%;
-    padding: 22px;
-    border-radius: 0 10px 10px 35px;
+}
+
+#resultContainer .empty{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
 }
 
 #resultContainer img {
     max-width: 250px;
     margin: 0 auto 1rem;
+    
+
+}
+
+.emptyHead {
+    color: #fff;
+    text-align: center;
+     font-size: 20px;
+}
+
+.emptyPara {
+    color: #ffffff89;
+    font-size: 13px;
+    text-align: center;
+}
+
+.resultHead {
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.resultpara {
+    color: #ffffff89;
+    font-size: 13px;
+    margin: -15px 0 15px;
+
+}
+
+.repayResult {
+    background: #040b27e1;
+    border-radius: 15px;
+    border-top: 4px solid hsl(62, 70%, 52%);
+    padding: 10px 28px;
+}
+.repayResult .monthPay{
+    color: hsl(62, 70%, 52%);
+    font-size: 36px;
+}
+.repayResult .totalPay{
+    color: #fff;
+    font-size: 18px;
+}
+.repayResult h4 {
+    color: #ffffff89;
+    font-size: 14px;
+
+}
+
+@media (max-width: 920px){
+    body{
+    flex-direction:column ;
+    align-items: stretch;
+    height: auto;
+    padding: 1rem;
+    
+    }
+     #mortgageContainer {
+    flex-direction: column;
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 1rem;
+  }
+  #calculatorContainer {
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    
+  }
+    #resultContainer {
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+  }
+   .form-row {
+    flex-direction: column;
+  }
+  .form-row input,
+  .form-group input,
+  #amount {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .calculate-btn {
+    width: 100%;
+  }
+   .repayResult .monthPay {
+    font-size: 28px;
+  }
+
+  .repayResult .totalPay {
+    font-size: 16px;
+  }
+   .resultHead {
+    font-size: 14px;
+    top: 10px;
+    left: 15px;
+     position: static;
+    margin-bottom: 1rem;
+  }
+   .emptyHead {
+    font-size: 18px;
+  }
+   .emptyPara {
+    font-size: 12px;
+  }
+
+  .resultpara {
+    font-size: 12px;
+  }
 
 }

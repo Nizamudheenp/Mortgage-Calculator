@@ -14,11 +14,23 @@ function App() {
       type: "Repayment"
     }
   )
+  const [errors, setErrors] = useState({});
   const [monthAmount, setMonthAmount] = useState(null)
   const [totalAmount, setTotalAmount] = useState(null)
   const [payType, setPayType] = useState("")
 
   const calculateData = () => {
+    const newErrors = {};
+    if (!formData.amount) newErrors.amount = "This field is required";
+    if (!formData.term) newErrors.term = "This field is required";
+    if (!formData.rate) newErrors.rate = "This field is required";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
     const amount = parseFloat(formData.amount);
     const term = parseFloat(formData.term);
     const rate = parseFloat(formData.rate);
@@ -47,11 +59,25 @@ function App() {
     }
   };
 
+  const clearAll = () => {
+  setFormdata({
+    amount: "",
+    term: "",
+    rate: "",
+    type: "Repayment",
+  });
+  setErrors({});
+  setMonthAmount(null);
+  setTotalAmount(null);
+  setPayType("");
+};
+
+
 
   return (
     <>
       <div id="mortgageContainer">
-        <Calculator formData={formData} setFormdata={setFormdata} calculateData={calculateData} />
+        <Calculator formData={formData} setFormdata={setFormdata} calculateData={calculateData} errors={errors}  clearAll={clearAll}  />
         <Result monthAmount={monthAmount} totalAmount={totalAmount} payType={payType} />
       </div>
     </>
